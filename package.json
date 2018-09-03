@@ -1,6 +1,6 @@
 {
   "name": "mina-webpack-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Webpack plugin for processing MINA apps (WeChat MiniPrograms).",
   "main": "lib/index.js",
   "repository": "https://github.com/oranzhang/mina-webpack-plugin",
