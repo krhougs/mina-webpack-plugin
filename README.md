@@ -6,20 +6,20 @@ MINA(微信小程序) Webpack 插件。
 ## 概述
 - 适用于 Webpack 4;
 - 可使用各种 pre-processors (e.g. Pug, Stylus, e.t.c.);
-- 支持 Component 等新加入的特性;
-- 自动合并依赖(使用 Webpack 的 SplitChunksPlugin);
-- 暂不支持分包;
+- 支持 Component;
+- 支持分包;
+- 自动合并依赖(使用 Webpack 的 SplitChunksPlugin);
+- 自动根据分包打包资源文件;
+- 自动通过配置文件生成 `app.json` 和页面的 JSON 配置;
 - 已在生产环境中测试并使用.
 
 ## 配置项
 ```js
   {
-    basePath: null, // 源码目录相对路径
-    entryName: 'app', // app.js 的 entry 名
-    entryChunkName: 'common', // 资源文件的 chunk 名, 不能为空
-    extensions: ['.js'], // 脚本部分扩展名, 使用时直接配置扩展名和 loader 即可
-    assetExtensions: ['.wxml', '.wxss', '.pug', '.styl', '.scss'], // 样式与模板部分扩展名, 使用时直接配置扩展名和 loader 即可
-    vendorFilename: 'common.js' // 依赖合并后的文件名
+    basePath: null, // 必填，源码目录绝对对路径
+    testAsset (filename) {
+      // 非必填， 返回 boolean 以判断所引用的文件是否应该作为资源打包
+    }
   }
 ```
 
@@ -36,12 +36,12 @@ MINA(微信小程序) Webpack 插件。
   }
 
   module.exports = {
-    entry: {
-      app: './src/app.js'
-    },
+    entry: () => {},
     optimization: {},
     plugins: [
-      new MinaWebpackPlugin(),
+      new MinaWebpackPlugin({
+        basePath: resolve('src')
+      }),
       new webpack.LoaderOptionsPlugin({
         pugLoader: {
           locals: {
@@ -74,23 +74,6 @@ MINA(微信小程序) Webpack 插件。
     module: {
       rules: [
         {
-          test: /\.(json)$/,
-          include: /src/,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                useRelativePath: true,
-                name: '[name].[json]',
-                context: resolve('src')
-              }
-            },
-            {
-              loader: 'raw-loader'
-            }
-          ]
-        },
-        {
           test: /\.js$/,
           include: [/src/, /lib/],
           loader: 'babel-loader',
@@ -100,14 +83,6 @@ MINA(微信小程序) Webpack 插件。
           test: /\.pug$/,
           include: /src/,
           use: [
-            {
-              loader: 'file-loader',
-              options: {
-                useRelativePath: true,
-                name: '[name].wxml',
-                context: resolve('src')
-              }
-            },
             {
               loader: 'wxml-loader'
             },
@@ -133,17 +108,6 @@ MINA(微信小程序) Webpack 插件。
           include: /src/,
           use: [
             {
-              loader: 'file-loader',
-              options: {
-                useRelativePath: true,
-                name: '[name].wxss',
-                context: resolve('src')
-              }
-            },
-            {
-              loader: 'extract-loader'
-            },
-            {
               loader: 'css-loader',
               options: {
                 minimize: true
@@ -153,30 +117,6 @@ MINA(微信小程序) Webpack 插件。
               loader: 'stylus-loader'
             }
           ]
-        },
-        {
-          test: /\.(jpe?g|png|svg)(\?.*)?$/,
-          include: /src/,
-          loader: 'file-loader',
-          options: {
-            name: 'images/[name].[hash:7].[ext]'
-          }
-        },
-        {
-          test: /\.(gif)(\?.*)?$/,
-          include: /src/,
-          loader: 'url-loader',
-          options: {
-            name: 'images/[name].[hash:7].[ext]'
-          }
-        },
-        {
-          test: /\.(woff2?|eot|ttf|otf|woff)(\?.*)?$/,
-          loader: 'url-loader',
-          options: {
-            limit: 100000,
-            name: 'fonts/[name].[hash:7].[ext]'
-          }
         }
       ]
     }

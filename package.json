@@ -11,6 +11,10 @@
     "loader-utils": "^1.2.3",
     "path": "^0.12.7",
     "webpack": "^4.17.1",
-    "webpack-sources": "^1.2.0"
+    "webpack-sources": "^1.2.0",
+    "dotenv": "^6.2.0",
+    "dotenv-expand": "^4.2.0"
+  },
+  "devDependencies": {
   }
 }
