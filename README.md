@@ -8,8 +8,8 @@ MINA(微信小程序) Webpack 插件。
 - 可使用各种 pre-processors (e.g. Pug, Stylus, e.t.c.);
 - 支持 Component;
 - 支持分包;
-- 自动合并依赖(使用 Webpack 的 SplitChunksPlugin);
-- 自动根据分包打包资源文件;
+- 自动合并依赖(使用 Webpack 的 SplitChunksPlugin);
+- 自动根据分包配置打包资源文件;
 - 自动通过配置文件生成 `app.json` 和页面的 JSON 配置;
 - 已在生产环境中测试并使用.
 
