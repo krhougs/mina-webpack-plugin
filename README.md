@@ -16,7 +16,7 @@ MINA(微信小程序) Webpack 插件。
 ## 配置项
 ```js
   {
-    basePath: null, // 必填，源码目录绝对对路径
+    basePath: path.join(__dirname, 'src'), // 必填，源码目录绝对对路径
     testAsset (filename) {
       // 非必填， 返回 boolean 以判断所引用的文件是否应该作为资源打包
     }
@@ -24,104 +24,7 @@ MINA(微信小程序) Webpack 插件。
 ```
 
 ## 例子
-```js
-  const path = require('path')
-  const webpack = require('webpack')
-
-  const babelConfig = require('../.babelrc')
-  const MinaWebpackPlugin = require('mina-webpack-plugin')
-
-  function resolve (dir) {
-    return path.join(__dirname, '..', dir)
-  }
-
-  module.exports = {
-    entry: () => {},
-    optimization: {},
-    plugins: [
-      new MinaWebpackPlugin({
-        basePath: resolve('src')
-      }),
-      new webpack.LoaderOptionsPlugin({
-        pugLoader: {
-          locals: {
-            basedir: path.resolve(__dirname, '../src') + '/'
-          },
-          pretty: true,
-          debug: false,
-          cache: true,
-          basedir: path.resolve(__dirname, '../src') + '/'
-        }
-      })
-    ].filter(function (e) { return e }),
-    output: {
-      path: resolve('dist'),
-      filename: '[name].js',
-      publicPath: '/',
-      libraryTarget: 'commonjs2'
-    },
-    resolve: {
-      modules: [
-        'node_modules',
-        path.resolve(__dirname, 'src'),
-        'lib'
-      ],
-      extensions: ['.js', '.json', '.pug', '.styl', '.coffee'],
-      alias: {
-        '@': resolve('src')
-      }
-    },
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          include: [/src/, /lib/],
-          loader: 'babel-loader',
-          options: babelConfig
-        },
-        {
-          test: /\.pug$/,
-          include: /src/,
-          use: [
-            {
-              loader: 'wxml-loader'
-            },
-            {
-              loader: 'pug-html-loader',
-              options: {
-                locals: {
-                  basedir: path.resolve(__dirname, '../src')
-                },
-                data: {
-                  strings: {}
-                },
-                pretty: true,
-                debug: false,
-                cache: true,
-                basedir: path.resolve(__dirname, '../src')
-              }
-            }
-          ]
-        },
-        {
-          test: /\.styl$/,
-          include: /src/,
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: true
-              }
-            },
-            {
-              loader: 'stylus-loader'
-            }
-          ]
-        }
-      ]
-    }
-  }
-```
+TODO
 
 ## 授权
 MIT
