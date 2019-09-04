@@ -4,9 +4,7 @@
   "main": "index.js",
   "author": "Krhougs Taengs <os@kt.je>",
   "license": "MIT",
-  "dependencies": {
-    "mina-loader": "../../packages/mina-loader"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
@@ -65,6 +63,7 @@
     "js-yaml-loader": "^1.2.2",
     "jsdom": "^15.1.1",
     "json-loader": "^0.5.7",
+    "mina-assets-loader": "^1.0.0",
     "mina-webpack-plugin": "^2.0.0",
     "nib": "^1.1.2",
     "node-sass": "^4.12.0",

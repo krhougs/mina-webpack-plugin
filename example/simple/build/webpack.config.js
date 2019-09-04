@@ -7,7 +7,7 @@ const poststylus = require('poststylus')
 const babelConfig = require('../.babelrc')
 
 const MinaWebpackPlugin = require('../../../packages/core').default
-const CopyPlugin = require('copy-webpack-plugin')
+// const CopyPlugin = require('copy-webpack-plugin')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -61,11 +61,17 @@ module.exports = {
         options: babelConfig
       },
       {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'mina-assets-loader'
+        ]
+      },
+      {
         test: /\.pug$/,
         include: /src/,
         use: [
           {
-            loader: 'mina-loader',
+            loader: 'mina-assets-loader',
             options: {
               template: true
             }
@@ -93,19 +99,19 @@ module.exports = {
         exclude: /\.module\.s(a|c)ss$/,
         use: [
           {
-            loader: 'mina-loader',
+            loader: 'mina-assets-loader',
             options: {
               stylesheets: true
             }
           },
-          'extract-loader', // creates style nodes from JS strings
+          'extract-loader',
           {
             loader: 'css-loader',
             options: {
               url: false
             }
           },
-          'sass-loader' // compiles Sass to CSS, using Node Sass by default
+          'sass-loader'
         ]
       },
       {
@@ -113,7 +119,7 @@ module.exports = {
         include: /src/,
         use: [
           {
-            loader: 'mina-loader',
+            loader: 'mina-assets-loader',
             options: {
               stylesheets: true,
               cssModules: true
@@ -127,8 +133,8 @@ module.exports = {
               },
               url: false
             }
-          }, // translates CSS into CommonJS
-          'sass-loader' // compiles Sass to CSS, using Node Sass by default
+          },
+          'sass-loader'
         ]
       },
       {
@@ -136,7 +142,7 @@ module.exports = {
         include: /src/,
         use: [
           {
-            loader: 'mina-loader',
+            loader: 'mina-assets-loader',
             options: {
               stylesheets: true
             }

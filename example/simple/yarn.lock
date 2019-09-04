@@ -4414,8 +4414,10 @@ mimic-fn@^2.0.0:
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-2.1.0.tgz#7ed2c2ccccaf84d3ffcb7a69b57711fc2083401b"
   integrity sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==
 
-mina-loader@../../packages/mina-loader:
+mina-assets-loader@^1.0.0:
   version "1.0.0"
+  resolved "https://registry.yarnpkg.com/mina-assets-loader/-/mina-assets-loader-1.0.0.tgz#4e95f79cb6f7b13883235d8af0f58721cb9ab84c"
+  integrity sha512-qtnDqdPwbAIBuqH/l7FaH/VRwydgN10hY1gcl7wLegG+SFrRcIiNBiIWkU7fMS2AvbN+PLBWKZ0WdHjV46fymQ==
 
 mina-webpack-plugin@^2.0.0:
   version "2.0.0"
