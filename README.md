@@ -9,6 +9,7 @@ A Webpack plugin for MINA(WeChat MiniProgram).
 - [x] 基础打包 | basic packaging
 - [x] 模板打包 | packaging for templates
 - [ ] 样式表打包 | packaging for stylesheets
+- [ ] 自定义组件打包 | packaging for components
 - [ ] remax 支持 | support for remax
 
 ## 概述 | Overview
