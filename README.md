@@ -6,6 +6,11 @@ A Webpack plugin for MINA(WeChat MiniProgram).
 > 这个项目正在开发中。
 > This project is under construction.
 
+- [x] 基础打包 | basic packaging
+- [x] 模板打包 | packaging for templates
+- [ ] 样式表打包 | packaging for stylesheets
+- [ ] remax 支持 | support for remax
+
 ## 概述 | Overview
 - 适用于 Webpack 4 | For Webpack 4;
 - 只支持微信小程序 | Compactable with WeChat MINA only;
