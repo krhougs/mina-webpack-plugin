@@ -8,7 +8,7 @@ A Webpack plugin for MINA(WeChat MiniProgram).
 
 - [x] 基础打包 | basic packaging
 - [x] 模板打包 | packaging for templates
-- [ ] 样式表打包 | packaging for stylesheets
+- [x] 样式表打包与 CSS Modules | packaging for stylesheets and css modules
 - [ ] 自定义组件打包 | packaging for components
 - [ ] remax 支持 | support for remax
 
@@ -29,11 +29,6 @@ A Webpack plugin for MINA(WeChat MiniProgram).
     // 必填，源码目录绝对对路径
     // required, absolute path of src directory
     basePath: path.join(__dirname, 'src'),
-    // 非必填， 返回 boolean 以判断所引用的文件是否应该作为资源打包
-    // not required, it returns a boolean to determine whether a dependency should be treated as an asset.
-    testAsset (filename) {
-      // do something
-    }
   }
 ```
 
