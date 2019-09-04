@@ -1,4 +1,4 @@
-var plugins = [
+const plugins = [
   ["@babel/plugin-transform-for-of"],
   ["@babel/plugin-transform-runtime", {
     "helpers": false,
@@ -7,14 +7,12 @@ var plugins = [
   ["@babel/plugin-transform-regenerator"],
   ["@babel/plugin-transform-destructuring"],
   ["@babel/plugin-proposal-object-rest-spread"],
-  ["@babel/plugin-proposal-decorators", {
-    legacy: true
-  }],
   ["@babel/plugin-proposal-class-properties", {
     loose: true
   }],
   ["@babel/plugin-transform-block-scoping"],
-  ["@babel/plugin-proposal-function-bind"]
+  ["@babel/plugin-proposal-function-bind"],
+  ["@babel/plugin-proposal-optional-chaining"]
 ]
 if (process.env.NO_CONSOLE === 'true') {
   plugins.push([

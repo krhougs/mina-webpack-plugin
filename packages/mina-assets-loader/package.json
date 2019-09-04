@@ -1,0 +1,29 @@
+{
+  "name": "mina-assets-loader",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Krhougs <gh@kt.je>",
+  "homepage": "https://github.com/oranzhang/mina-webpack-plugin#readme",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "/lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.yarnpkg.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oranzhang/mina-webpack-plugin.git"
+  },
+  "scripts": {
+    "watch": "babel src --out-dir lib --babelrc ../../.babelrc -w",
+    "build": "babel src --out-dir lib --babelrc ../../.babelrc"
+  },
+  "bugs": {
+    "url": "https://github.com/oranzhang/mina-webpack-plugin/issues"
+  }
+}
