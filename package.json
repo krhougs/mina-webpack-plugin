@@ -12,6 +12,7 @@
     "fs-extra": "^8.1.0",
     "loader-utils": "^1.2.3",
     "path": "^0.12.7",
+    "require-from-string": "^2.0.2",
     "webpack": "^4.39.3",
     "webpack-sources": "^1.4.3"
   },

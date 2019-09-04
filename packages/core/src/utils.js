@@ -1,28 +1,25 @@
-const path = require('path')
+import path from 'path'
+import rfs from 'require-from-string'
+import { transformFileSync } from '@babel/core'
 
-function resolve (dir) {
-  return path.join(__dirname, '.', dir)
+function resolve (...dir) {
+  return path.join(process.cwd(), '.', ...dir)
 }
 
-function normalizeOptions (options, thisArg) {
-  const _options = options || {}
-  const defaultOptions = {
-    basePath: null,
-    testAsset (filename) {
-      return filename.match(/\.(jpe?g|png|svg|gif|woff2?|eot|ttf|otf|woff)(\?.*)?$/)
-    }
-  }
+function resolveInside (...dir) {
+  return path.join(__dirname, '.', ...dir)
+}
 
-  const ret = Object.assign({}, defaultOptions, options)
-
-  Object.getOwnPropertyNames(ret).forEach(i => {
-    thisArg[i] = ret[i]
+function requireFromString (filename) {
+  const transformation = transformFileSync(filename, {
+    configFile: path.join(__dirname, '..', '.babelrc'),
+    ast: false
   })
-
-  return ret
+  return rfs(transformation.code).default
 }
 
 module.exports = {
   resolve,
-  normalizeOptions
+  resolveInside,
+  requireFromString
 }
