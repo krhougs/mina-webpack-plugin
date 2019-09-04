@@ -1,10 +1,13 @@
 {
-  "name": "simple-remax-example",
+  "name": "simple-example",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Krhougs Taengs <os@kt.je>",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "react": "^16.9.0",
+    "remax": "^1.0.15"
+  },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
