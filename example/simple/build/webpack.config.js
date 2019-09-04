@@ -90,9 +90,44 @@ module.exports = {
       {
         test: /\.s(a|c)ss$/,
         include: /src/,
+        exclude: /\.module\.s(a|c)ss$/,
         use: [
+          {
+            loader: 'mina-loader',
+            options: {
+              stylesheets: true
+            }
+          },
           'extract-loader', // creates style nodes from JS strings
-          'css-loader?url=false', // translates CSS into CommonJS
+          {
+            loader: 'css-loader',
+            options: {
+              url: false
+            }
+          },
+          'sass-loader' // compiles Sass to CSS, using Node Sass by default
+        ]
+      },
+      {
+        test: /\.module\.s(a|c)ss$/,
+        include: /src/,
+        use: [
+          {
+            loader: 'mina-loader',
+            options: {
+              stylesheets: true,
+              cssModules: true
+            }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[name]__[local]___[hash:base64:5]'
+              },
+              url: false
+            }
+          }, // translates CSS into CommonJS
           'sass-loader' // compiles Sass to CSS, using Node Sass by default
         ]
       },
@@ -100,6 +135,12 @@ module.exports = {
         test: /\.styl$/,
         include: /src/,
         use: [
+          {
+            loader: 'mina-loader',
+            options: {
+              stylesheets: true
+            }
+          },
           {
             loader: 'extract-loader'
           },
