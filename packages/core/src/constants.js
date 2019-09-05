@@ -7,8 +7,8 @@ module.exports = {
   WORKER_DIRECTORY: '~worker',
   WORKER_ENTRY: '~worker/index.js',
   WORKER_CHUNK_NAME: '~worker/index',
-  
+
   APP_CHUNK_NAME: 'app',
 
-  LOADER_EXPORT_PREFIX: "'use mina'\nmodule.exports = "
+  LOADER_EXPORT_PREFIX: "'use mina'"
 }

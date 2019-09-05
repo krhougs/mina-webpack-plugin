@@ -1,4 +1,5 @@
 import { ConcatSource } from 'webpack-sources'
+import rfs from 'require-from-string'
 
 import { PLUGIN_NAME, LOADER_EXPORT_PREFIX } from './constants'
 
@@ -9,7 +10,7 @@ async function applyNormalAssets (chunks, compilation) {
     for (const m of c.getModules()) {
       const content = m.originalSource()._value
       if (content.startsWith(LOADER_EXPORT_PREFIX)) {
-        const config = JSON.parse(content.replace(LOADER_EXPORT_PREFIX, ''))
+        const config = rfs(content)
 
         if (config.options?.template) {
           const key = c.id + '.wxml'
