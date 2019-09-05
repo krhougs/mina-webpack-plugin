@@ -27,28 +27,24 @@ function isRemaxRequest (data) {
   return false
 }
 
-async function hookBeforeResolve (data) {
+async function hookAfterResolve (data) {
   if (data.rawRequest?.endsWith('?remaxPage')) {
     ['rawRequest', 'request', 'resource', 'userRequest'].forEach(k => {
       data[k] = data[k].replace(/\?remaxPage$/, '')
     })
     data.isRemaxPage = isRemaxRequest(data)
-  }
-}
-
-async function hookAfterResolve (data) {
-  if (data.isRemaxPage) {
-    data.loaders.unshift({
-      loader: require.resolve('babel-loader'),
-      __remax: true,
-      options: {
-        plugins: [BabelRemaxPagePlugin]
-      }
-    })
+    if (data.isRemaxPage) {
+      data.loaders.unshift({
+        loader: require.resolve('babel-loader'),
+        __remax: true,
+        options: {
+          plugins: [BabelRemaxPagePlugin]
+        }
+      })
+    }
   }
 }
 
 export default function (normalModuleFactory) {
-  normalModuleFactory.hooks.afterResolve.tapPromise(PLUGIN_NAME, this::hookBeforeResolve)
   normalModuleFactory.hooks.afterResolve.tapPromise(PLUGIN_NAME, this::hookAfterResolve)
 }

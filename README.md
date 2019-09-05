@@ -3,13 +3,10 @@ MINA(微信小程序) Webpack 插件。
 
 A Webpack plugin for MINA(WeChat MiniProgram).
 
-> 这个项目正在开发中。
-> This project is under construction.
-
 - [x] 基础打包 | basic packaging
 - [x] 模板打包 | packaging for templates
 - [x] 样式表打包与 CSS Modules | packaging for stylesheets and css modules
-- [ ] 静态资源打包 | packaging for static resources
+- [x] 静态资源打包 | packaging for static resources
 - [ ] 自定义组件打包 | packaging for components
 - [ ] Source Maps
 - [x] remax 支持 | support for remax
@@ -61,11 +58,11 @@ export default {
 ## `mina-assets-loader`
 直接使用 `mina-assets-loader` 处理静态资源。
 
-Just let `mina-assets-loader` handle the static assets. 
+Just let `mina-assets-loader` handle the static assets.
 
 ```js
 // src/pages/Index/index.js
-import thePicture from './index.pug'
+import thePicture from './index.png'
 
 // webpack.config.js
 export default {

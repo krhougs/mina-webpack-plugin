@@ -9,8 +9,9 @@ import applyChunks from './applyChunks'
 import applyChunkDecorations from './applyChunkDecorations'
 import applyChunkAssets from './applyChunkAssets'
 import ensureRequire from './ensureRequire'
+import applyStaticAssetDecoration from './applyStaticAssetDecoration'
 
-import BabelRemaxComponentPlugin, { resetComponents } from './remax/BabelRemaxComponentPlugin'
+import BabelRemaxComponentPlugin from './remax/BabelRemaxComponentPlugin'
 import * as RemaxWechatAdapter from './remax/adapter/wechat'
 import applyEntryDecoration from './remax/applyEntryDecoration'
 
@@ -19,6 +20,7 @@ export default class MinaWebpackPlugin {
     this.normalizeOptions(options)
     this.resolveEntries = this.resolveEntries.bind(this)
     this.resolveBasePath = this.resolveBasePath.bind(this)
+    global.__minaWebpackPlugin = this
   }
 
   apply (compiler) {
@@ -36,16 +38,15 @@ export default class MinaWebpackPlugin {
   }
 
   hookNormalModuleFactory (normalModuleFactory) {
+    this::applyStaticAssetDecoration(normalModuleFactory)
     if (this.remax) {
       return this::applyEntryDecoration(normalModuleFactory)
     }
   }
 
   async hookRun () {
-    if (this.remax) {
-      resetComponents()
-    }
     this.entryMap = getEntryMap(this)
+    this.staticAssets = []
     applySplitting(this, this.entryMap)
     return this.entryMap
   }

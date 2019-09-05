@@ -1,6 +1,6 @@
 import { ConcatSource } from 'webpack-sources'
 
-import { PLUGIN_NAME, LOADER_EXPORT_PREFIX, WORKER_CHUNK_NAME, APP_CHUNK_NAME } from './constants'
+import { PLUGIN_NAME, LOADER_EXPORT_PREFIX } from './constants'
 
 import applyRemaxAssets from './remax/applyRemaxAssets'
 
@@ -16,9 +16,7 @@ async function applyNormalAssets (chunks, compilation) {
           compilation.assets[key] = compilation.assets[key]
             ? new ConcatSource(compilation.assets[key], '\n', config.content)
             : new ConcatSource(config.content)
-        }
-
-        if (config.options?.stylesheets || config.__MINA?.options.stylesheets) {
+        } else if (config.options?.stylesheets || config.__MINA?.options.stylesheets) {
           const key = c.id + '.wxss'
           if (config.__MINA?.options.cssModules) {
             compilation.assets[key] = compilation.assets[key]
@@ -30,20 +28,20 @@ async function applyNormalAssets (chunks, compilation) {
               : new ConcatSource(config.content)
           }
         }
-
-        if (config.options?.assets) {
-        }
       }
     }
   }
 }
 
 function applyChunkAssets (compilation) {
-  compilation.hooks.optimizeChunkAssets.tapPromise(PLUGIN_NAME, async chunks => {
-    await this::applyNormalAssets(chunks, compilation)
+  compilation.hooks.optimizeChunkAssets.tapPromise(PLUGIN_NAME, chunks => {
+    const promises = [
+      this::applyNormalAssets(chunks, compilation)
+    ]
     if (this.remax) {
-      await this::applyRemaxAssets(chunks, compilation)
+      promises.push(this::applyRemaxAssets(chunks, compilation))
     }
+    return Promise.all(promises)
   })
 }
 
