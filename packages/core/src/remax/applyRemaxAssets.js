@@ -32,22 +32,26 @@ async function applyEntryTemplates (chunks, compilation) {
     chunks.map(c => (
       async () => {
         if (!this::isRemaxChunk(c)) { return }
-
         const templateCode = await renderFile(adapter.templates.page, {
           baseTemplate: `../../base${adapter.extensions.template}`,
           jsHelper: `../../helper${adapter.extensions.jsHelper}`
         })
 
-        compilation.assets[`${c.id}${adapter.extensions.template}`] = new ConcatSource(templateCode)
+        compilation.assets[`${c.name}${adapter.extensions.template}`] = new ConcatSource(templateCode)
       }
     )())
   )
 }
 
 function isRemaxChunk (chunk) {
-  if (chunk.id.indexOf('/pages/') > -1) {
+  if (chunk.name.indexOf('/pages/') > -1) {
     const module = chunk.entryModule
-    return !!module.loaders?.[0]?.__remax
+
+    if (module.constructor.name === 'ConcatenatedModule') {
+      return module.rootModule.loaders.findIndex(l => l.__remax) > -1
+    }
+
+    return module.loaders.findIndex(l => l.__remax) > -1
   }
   return false
 }

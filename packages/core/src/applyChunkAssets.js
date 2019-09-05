@@ -8,25 +8,27 @@ import applyRemaxAssets from './remax/applyRemaxAssets'
 async function applyNormalAssets (chunks, compilation) {
   for (const c of chunks) {
     for (const m of c.getModules()) {
-      const content = m.originalSource()._value
-      if (content.startsWith(LOADER_EXPORT_PREFIX)) {
-        const config = rfs(content)
+      if (m._source) {
+        const content = m._source._value
+        if (content.startsWith(LOADER_EXPORT_PREFIX)) {
+          const config = rfs(content)
 
-        if (config.options?.template) {
-          const key = c.id + '.wxml'
-          compilation.assets[key] = compilation.assets[key]
-            ? new ConcatSource(compilation.assets[key], '\n', config.content)
-            : new ConcatSource(config.content)
-        } else if (config.options?.stylesheets || config.__MINA?.options.stylesheets) {
-          const key = c.id + '.wxss'
-          if (config.__MINA?.options.cssModules) {
-            compilation.assets[key] = compilation.assets[key]
-              ? new ConcatSource(compilation.assets[key], '\n', config.__MINA.stylesheets)
-              : new ConcatSource(config.__MINA.stylesheets)
-          } else {
+          if (config.options?.template) {
+            const key = c.name + '.wxml'
             compilation.assets[key] = compilation.assets[key]
               ? new ConcatSource(compilation.assets[key], '\n', config.content)
               : new ConcatSource(config.content)
+          } else if (config.options?.stylesheets || config.__MINA?.options.stylesheets) {
+            const key = c.name + '.wxss'
+            if (config.__MINA?.options.cssModules) {
+              compilation.assets[key] = compilation.assets[key]
+                ? new ConcatSource(compilation.assets[key], '\n', config.__MINA.stylesheets)
+                : new ConcatSource(config.__MINA.stylesheets)
+            } else {
+              compilation.assets[key] = compilation.assets[key]
+                ? new ConcatSource(compilation.assets[key], '\n', config.content)
+                : new ConcatSource(config.content)
+            }
           }
         }
       }
