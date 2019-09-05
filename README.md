@@ -56,7 +56,7 @@ export default {
 
 [example](https://github.com/krhougs/mina-webpack-plugin/tree/master/example/simple)
 
-[example avex Remax](https://github.com/krhougs/mina-webpack-plugin/tree/master/example/remax)
+[example avec Remax](https://github.com/krhougs/mina-webpack-plugin/tree/master/example/remax)
 
 ## `mina-assets-loader`
 直接使用 `mina-assets-loader` 处理静态资源。
