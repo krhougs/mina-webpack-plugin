@@ -1,6 +1,6 @@
 {
   "name": "mina-webpack-plugin",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "",
   "author": "Krhougs Taengs <gh@kt.je>",
   "homepage": "https://github.com/oranzhang/mina-webpack-plugin#readme",
@@ -8,11 +8,13 @@
   "main": "lib/index.js",
   "directories": {
     "lib": "lib",
-    "node_modules": "node_modules"
+    "node_modules": "node_modules",
+    "templates": "templates"
   },
   "files": [
     "lib",
     "node_modules",
+    "templates",
     ".babelrc"
   ],
   "publishConfig": {
