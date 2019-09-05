@@ -12,7 +12,7 @@ A Webpack plugin for MINA(WeChat MiniProgram).
 - [ ] 静态资源打包 | packaging for static resources
 - [ ] 自定义组件打包 | packaging for components
 - [ ] Source Maps
-- [ ] remax 支持 | support for remax
+- [x] remax 支持 | support for remax
 
 ## 概述 | Overview
 - 适用于 Webpack 4 | For Webpack 4;
@@ -31,6 +31,9 @@ A Webpack plugin for MINA(WeChat MiniProgram).
     // 必填，源码目录绝对对路径
     // required, absolute path of src directory
     basePath: path.join(__dirname, 'src'),
+    // 选填，是否开启remax支持
+    // optional, enable remax support
+    remax: false
   }
 ```
 
@@ -52,6 +55,8 @@ export default {
 ```
 
 [example](https://github.com/krhougs/mina-webpack-plugin/tree/master/example/simple)
+
+[example avex Remax](https://github.com/krhougs/mina-webpack-plugin/tree/master/example/simple)
 
 ## `mina-assets-loader`
 直接使用 `mina-assets-loader` 处理静态资源。

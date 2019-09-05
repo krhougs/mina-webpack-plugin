@@ -4,10 +4,21 @@ const path = require('path')
 const rem2rpx = require('@krhougs/postcss-rem2rpx')
 const poststylus = require('poststylus')
 
-const babelConfig = require('../.babelrc')
-
 const MinaWebpackPlugin = require('../../../packages/core').default
 // const CopyPlugin = require('copy-webpack-plugin')
+
+const minaWebpackPlugin = new MinaWebpackPlugin({
+  remax: true
+})
+
+let babelConfig = require('../.babelrc')
+babelConfig = {
+  ...babelConfig,
+  plugins: [
+    minaWebpackPlugin.BabelRemaxComponentPlugin,
+    ...babelConfig.plugins
+  ]
+}
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -18,7 +29,7 @@ module.exports = {
   optimization: {},
   entry: () => ({}),
   plugins: [
-    new MinaWebpackPlugin()
+    minaWebpackPlugin
   //   new CopyPlugin([
   //     {
   //       from: 'static',

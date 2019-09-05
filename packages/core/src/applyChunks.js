@@ -26,7 +26,7 @@ function applyPageChunks (entryMap, compilation) {
 function applyComponentChunk (config, compilation, compiler) {
   new SingleEntryPlugin(
     this.basePath,
-    config.js.request,
+    this.remax ? `${config.js.request}?remaxPage` : config.js.request,
     config.distBasePath
   ).apply(this.compiler)
   compilation.assets[`${config.distBasePath}.json`] = {

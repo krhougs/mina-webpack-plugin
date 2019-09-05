@@ -10,6 +10,10 @@ import applyChunkDecorations from './applyChunkDecorations'
 import applyChunkAssets from './applyChunkAssets'
 import ensureRequire from './ensureRequire'
 
+import BabelRemaxComponentPlugin, { resetComponents } from './remax/BabelRemaxComponentPlugin'
+import * as RemaxWechatAdapter from './remax/adapter/wechat'
+import applyEntryDecoration from './remax/applyEntryDecoration'
+
 export default class MinaWebpackPlugin {
   constructor (options) {
     this.normalizeOptions(options)
@@ -23,6 +27,7 @@ export default class MinaWebpackPlugin {
   }
 
   initialize () {
+    this.compiler.hooks.normalModuleFactory.tap(PLUGIN_NAME, this::this.hookNormalModuleFactory)
     this.compiler.hooks.run.tapPromise(PLUGIN_NAME, this::this.hookRun)
     this.compiler.hooks.watchRun.tapPromise(PLUGIN_NAME, this::this.hookRun)
     this.compiler.hooks.compilation.tap(PLUGIN_NAME, this::this.hookCompilation)
@@ -30,7 +35,16 @@ export default class MinaWebpackPlugin {
     this.compiler.hooks.afterEmit.tap(PLUGIN_NAME, this::this.hookAfterEmit)
   }
 
+  hookNormalModuleFactory (normalModuleFactory) {
+    if (this.remax) {
+      return this::applyEntryDecoration(normalModuleFactory)
+    }
+  }
+
   async hookRun () {
+    if (this.remax) {
+      resetComponents()
+    }
     this.entryMap = getEntryMap(this)
     applySplitting(this, this.entryMap)
     return this.entryMap
@@ -53,13 +67,13 @@ export default class MinaWebpackPlugin {
     return this.entryResolver(this)
   }
 
+  BabelRemaxComponentPlugin = BabelRemaxComponentPlugin(RemaxWechatAdapter)
+
   normalizeOptions (options = {}) {
     const defaultOptions = {
       basePath: resolve('src'),
-      testAsset (filename) {
-        return filename.match(/\.(jpe?g|png|svg|gif|woff2?|eot|ttf|otf|woff)(\?.*)?$/)
-      },
-      appConfig: 'app.config.js'
+      appConfig: 'app.config.js',
+      remax: false
     }
 
     const ret = Object.assign({}, defaultOptions, options)
