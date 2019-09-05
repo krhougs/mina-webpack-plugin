@@ -67,7 +67,7 @@
     "jsdom": "^15.1.1",
     "json-loader": "^0.5.7",
     "mina-assets-loader": "^1.1.0",
-    "mina-webpack-plugin": "^3.0.0",
+    "mina-webpack-plugin": "^3.0.3",
     "nib": "^1.1.2",
     "node-sass": "^4.12.0",
     "path": "^0.12.7",
@@ -99,11 +99,11 @@
   },
   "scripts": {
     "clean": "rimraf dist/*",
-    "watch": "yarn run clean; dotenv -e .env.development webpack -- --config build/webpack.config.js --watch",
-    "watch_prod": "yarn run clean; dotenv -e .env.production webpack -- --config build/webpack.prod.config.js --watch",
-    "build": "yarn run clean; dotenv -e .env.production webpack -- --config build/webpack.prod.config.js",
-    "build_dev": "yarn run clean; dotenv -e .env.development webpack -- --config build/webpack.config.js",
-    "debug": "yarn run clean; dotenv -e .env.development node -- --nolazy --inspect-brk=9229 node_modules/webpack-cli/bin/cli.js --config build/webpack.config.js --watch"
+    "watch": "yarn run clean; webpack --config build/webpack.config.js --watch",
+    "watch_prod": "yarn run clean; NODE_ENV=production webpack --config build/webpack.prod.config.js --watch",
+    "build": "yarn run clean; NODE_ENV=production webpack --config build/webpack.prod.config.js",
+    "build_dev": "yarn run clean; webpack --config build/webpack.config.js",
+    "debug": "yarn run clean; node --nolazy --inspect-brk=9229 node_modules/webpack-cli/bin/cli.js --config build/webpack.config.js --watch"
   },
   "peerDependencies": {}
 }

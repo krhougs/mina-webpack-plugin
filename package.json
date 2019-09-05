@@ -7,8 +7,6 @@
   "author": "Krhougs Taengs <gh@kt.je>",
   "license": "MIT",
   "dependencies": {
-    "acorn": "^7.0.0",
-    "acorn-jsx": "^5.0.2",
     "dotenv": "^8.1.0",
     "dotenv-expand": "^5.1.0",
     "ejs": "^2.7.1",

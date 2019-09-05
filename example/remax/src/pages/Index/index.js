@@ -8,7 +8,7 @@ function IndexPage () {
   const [state, setState] = useState()
   useEffect(() => {
     setState('test')
-    console.log(MiaoJpg)
+    console.log(process.env)
   }, [])
   // return state
   return <View className={style.Test}>

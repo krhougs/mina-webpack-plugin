@@ -1095,6 +1095,13 @@ acorn@^7.0.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.0.0.tgz#26b8d1cd9a9b700350b71c0905546f64d1284e7a"
   integrity sha512-PaF/MduxijYYt7unVGRuds1vBC9bFxbNf+VWqhOClfdgy7RlVkQqt610ig1/yxTgsDIfW1cWDel5EBbOy3jdtQ==
 
+acron@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/acron/-/acron-1.0.5.tgz#88fd96cad14ec895f3d687820861b423b1e2889b"
+  integrity sha512-Jm3uey9PSUl5k9RsjBSfDJG35nG0vd9B4FUCV1J/NeVHDQ5HJPVpAhmGrPYtPKh0gLhEUIEy4DKqBy/p60B+4Q==
+  dependencies:
+    lodash "^4.17.11"
+
 add-dom-event-listener@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/add-dom-event-listener/-/add-dom-event-listener-1.1.0.tgz#6a92db3a0dd0abc254e095c0f1dc14acbbaae310"
@@ -4542,10 +4549,13 @@ mina-assets-loader@^1.1.0:
   resolved "https://registry.yarnpkg.com/mina-assets-loader/-/mina-assets-loader-1.1.0.tgz#3bf7cb7d5ffa401407c82e4e0febe90378ee8c21"
   integrity sha512-bfOJLJuFg9JdMoRkgRh4Ixf0Ex3fancLVNZ5XG+gK5rLiH2fvIv7m29EjRxpREYOXB4Y1jZRjErkGQnsZ+tJAQ==
 
-mina-webpack-plugin@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/mina-webpack-plugin/-/mina-webpack-plugin-3.0.0.tgz#f9a00a5ef0c1c5636a77a028c0b3f46faf0261ad"
-  integrity sha512-eOn3tNPe4Tm+ijSpg8dNTTljgyphl1LmjEzbuC4ECmuWT538rYjhqov54XHqBEhqY6+y+A7euI1B+Nvfhae2OA==
+mina-webpack-plugin@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/mina-webpack-plugin/-/mina-webpack-plugin-3.0.3.tgz#1ba47c556e1391c318d404ff865cb0e5a94fa88b"
+  integrity sha512-PZFGGMn5rCNRGjXp5qDfG/0f29R+fCRfHGtKEf0f2BIzjoJkVeR1Pd9jFZH8fF/vW5GMladomGkqrVJsuEazNw==
+  dependencies:
+    acorn-jsx "^5.0.2"
+    acron "^1.0.5"
 
 minimalistic-assert@^1.0.0, minimalistic-assert@^1.0.1:
   version "1.0.1"

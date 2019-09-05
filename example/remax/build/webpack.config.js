@@ -4,7 +4,7 @@ const path = require('path')
 const rem2rpx = require('@krhougs/postcss-rem2rpx')
 const poststylus = require('poststylus')
 
-const MinaWebpackPlugin = require('../../../packages/core').default
+const MinaWebpackPlugin = require('mina-webpack-plugin').default
 // const CopyPlugin = require('copy-webpack-plugin')
 
 const minaWebpackPlugin = new MinaWebpackPlugin({

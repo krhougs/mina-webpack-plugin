@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const DefinePlugin = require('webpack/lib/DefinePlugin')
 
 const appDirectory = fs.realpathSync(process.cwd())
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
@@ -53,7 +54,7 @@ process.env.NODE_PATH = (process.env.NODE_PATH || '')
 // injected into the application via DefinePlugin in Webpack configuration.
 const MINA_APP = /^MINA_APP_/i
 
-function getClientEnvironment(data) {
+function getClientEnvironment (data) {
   const raw = Object.keys(process.env)
     .filter(key => MINA_APP.test(key))
     .reduce(
@@ -69,14 +70,30 @@ function getClientEnvironment(data) {
       }
     )
   // Stringify all values so we can feed into Webpack DefinePlugin
-  const stringified = {
-    'process.env': Object.keys(raw).reduce((env, key) => {
-      env[key] = JSON.stringify(raw[key])
-      return env
-    }, {})
-  }
+  const stringified = JSON.stringify(raw)
 
   return { raw, stringified }
 }
 
-module.exports = getClientEnvironment
+function injectEnv () {
+  const routes = (() => {
+    const ret = {}
+    this.entryMap.packageNames
+      .forEach(packageName => {
+        ret[packageName] = {}
+        this.entryMap[packageName].pages.forEach(page => {
+          ret[packageName][page.key] = `/${page.distBasePath}`
+        })
+      })
+    return ret
+  })()
+  new DefinePlugin({
+    'process.env': getClientEnvironment({
+      APP_ROUTES: routes
+    }).stringified
+  }).apply(this.compiler)
+}
+
+export default function (plugin, ...args) {
+  return plugin::injectEnv(...args)
+}

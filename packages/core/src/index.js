@@ -10,6 +10,7 @@ import applyChunkDecorations from './applyChunkDecorations'
 import applyChunkAssets from './applyChunkAssets'
 import ensureRequire from './ensureRequire'
 import applyStaticAssetDecoration from './applyStaticAssetDecoration'
+import injectEnv from './injectEnv'
 
 import BabelRemaxComponentPlugin from './remax/BabelRemaxComponentPlugin'
 import * as RemaxWechatAdapter from './remax/adapter/wechat'
@@ -58,6 +59,7 @@ export default class MinaWebpackPlugin {
   hookThisCompilation (compilation, compilationParams) {
     applyChunks(this, compilation)
     applyChunkAssets(this, compilation)
+    injectEnv(this, compilation)
   }
 
   hookAfterEmit (compilation) {
