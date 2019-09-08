@@ -19,7 +19,7 @@ async function applyNormalAssets (chunks, compilation) {
               ? new ConcatSource(compilation.assets[key], '\n', config.content)
               : new ConcatSource(config.content)
           } else if (config.options?.stylesheets || config.__MINA?.options.stylesheets) {
-            const key = c.name + '.wxss'
+            const key = 'app.wxss'
             if (config.__MINA?.options.cssModules) {
               compilation.assets[key] = compilation.assets[key]
                 ? new ConcatSource(compilation.assets[key], '\n', config.__MINA.stylesheets)
