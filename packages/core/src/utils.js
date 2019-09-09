@@ -12,7 +12,7 @@ function resolveInside (...dir) {
 
 function requireFromString (filename) {
   const transformation = transformFileSync(filename, {
-    configFile: path.join(__dirname, '..', '.babelrc'),
+    configFile: path.join(__dirname, '..', '.babelrc.js'),
     ast: false
   })
   return rfs(transformation.code).default

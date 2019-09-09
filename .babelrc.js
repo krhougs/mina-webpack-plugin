@@ -1,16 +1,13 @@
-{
+module.exports = {
   "presets": [
     ["@babel/preset-env"]
   ],
   "plugins": [
     ["@babel/plugin-transform-modules-commonjs"],
     ["@babel/plugin-transform-for-of"],
-    // ["@babel/plugin-transform-regenerator"],
     ["@babel/plugin-transform-runtime", {
       "helpers": false,
-      "regenerator": true,
-      "absoluteRuntime": true,
-      "loose": true
+      "regenerator": true
     }],
     ["@babel/plugin-transform-destructuring"],
     ["@babel/plugin-proposal-object-rest-spread"],
