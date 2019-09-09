@@ -23,7 +23,7 @@ function applySplitting (entryMap) {
     }
     cacheGroups[`${packageName}Common`] = {
       test (module) {
-        if (module.request.indexOf('mina-loader') > -1) {
+        if (module.request?.indexOf && module.request.indexOf('mina-assets-loader') > -1) {
           return false
         }
         return module.resource &&
