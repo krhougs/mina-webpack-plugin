@@ -1,6 +1,6 @@
 {
   "name": "mina-webpack-plugin",
-  "version": "3.0.4-fix.0",
+  "version": "3.0.4-fix.1",
   "description": "",
   "author": "Krhougs Taengs <gh@kt.je>",
   "homepage": "https://github.com/oranzhang/mina-webpack-plugin#readme",
@@ -15,7 +15,7 @@
     "lib",
     "node_modules",
     "templates",
-    ".babelrc"
+    ".babelrc.js"
   ],
   "publishConfig": {
     "registry": "https://registry.yarnpkg.com"
