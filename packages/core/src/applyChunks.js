@@ -10,7 +10,7 @@ function applyAppChunk (entryMap, compilation) {
 
   new SingleEntryPlugin(
     this.basePath + '/',
-    `${app.js.request}`,
+    this.remax ? `${app.js.request}?remaxApp` : app.js.request,
     'app'
   ).apply(this.compiler)
 }

@@ -4,8 +4,9 @@ import { addNamed } from '@babel/helper-module-imports'
 function pageConfigExpression(path, id) {
   const createId = addNamed(path, 'createPageConfig', 'remax')
   path.insertAfter(
-    t.callExpression(
-      t.identifier('Page'), [t.callExpression(createId, [id])]))
+    t.exportDefaultDeclaration(
+      t.callExpression(
+        t.identifier('Page'), [t.callExpression(createId, [id])])))
 }
 
 export default () => ({
