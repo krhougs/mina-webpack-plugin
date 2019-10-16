@@ -3,7 +3,7 @@ import SplitChunksPlugin from 'webpack/lib/optimize/SplitChunksPlugin'
 function applySplitting (entryMap) {
   const nodeModuleRegex = /[\\/]node_modules[\\/]/
   const groupBase = {
-    minChunks: 2,
+    minChunks: 1,
     reuseExistingChunk: true,
     enforce: true
   }

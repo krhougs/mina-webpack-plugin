@@ -47,6 +47,10 @@ function isRemaxChunk (chunk) {
   if (chunk.name.indexOf('/pages/') > -1) {
     const module = chunk.entryModule
 
+    if (!(module && module.constructor && module.constructor.name)) {
+      return false
+    }
+
     if (module.constructor.name === 'ConcatenatedModule') {
       return module.rootModule.loaders.findIndex(l => l.__remax) > -1
     }
