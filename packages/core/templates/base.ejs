@@ -1,9 +1,3 @@
-<template name="REMAX_TPL">
-  <block wx:for="{{tree.root.children}}" wx:key="{{id}}">
-    <template is="REMAX_TPL_1_CONTAINER" data="{{i: item}}" />
-  </block>
-</template>
-
 <wxs module="_h">
   module.exports = {
   v: function(value) {

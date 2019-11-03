@@ -1,3 +1,4 @@
-<wxs src="<%= jsHelper %>" module="helper" />
-  <import src="<%= baseTemplate %>"/>
-  <template is="REMAX_TPL" data="{{tree: helper.reduce(action)}}" />
+<import src="<%= baseTemplate %>"/>
+<block wx:for="{{tree.root.children}}" wx:key="{{id}}">
+  <template is="REMAX_TPL_1_CONTAINER" data="{{i: item}}" />
+</block>

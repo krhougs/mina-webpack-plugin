@@ -17,24 +17,13 @@ async function applyBaseTemplate (chunks, compilation) {
   }
 }
 
-async function applyHelperFile (chunks, compilation) {
-  const code = await renderFile(adapter.templates.jsHelper, {
-    target: adapter.name
-  })
-
-  for (const n of this.entryMap.packageNames) {
-    compilation.assets[path.join(n, `helper${adapter.extensions.jsHelper}`)] = new ConcatSource(code)
-  }
-}
-
 async function applyEntryTemplates (chunks, compilation) {
   return Promise.all(
     chunks.map(c => (
       async () => {
         if (!this::isRemaxChunk(c)) { return }
         const templateCode = await renderFile(adapter.templates.page, {
-          baseTemplate: `../../base${adapter.extensions.template}`,
-          jsHelper: `../../helper${adapter.extensions.jsHelper}`
+          baseTemplate: `../../base${adapter.extensions.template}`
         })
 
         compilation.assets[`${c.name}${adapter.extensions.template}`] = new ConcatSource(templateCode)
@@ -63,7 +52,6 @@ function isRemaxChunk (chunk) {
 function applyRemaxAssets (chunks, compilation) {
   return Promise.all([
     this::applyBaseTemplate(chunks, compilation),
-    this::applyHelperFile(chunks, compilation),
     this::applyEntryTemplates(chunks, compilation)
   ])
 }
