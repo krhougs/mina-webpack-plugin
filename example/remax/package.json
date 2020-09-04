@@ -69,7 +69,7 @@
     "mina-assets-loader": "^1.1.0",
     "mina-webpack-plugin": "^3.0.3",
     "nib": "^1.1.2",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "path": "^0.12.7",
     "pbjs-loader": "^0.1.1",
     "postcss-rem2rpx": "^1.0.1",
