@@ -31,7 +31,7 @@
     "@babel/runtime": "^7.5.5",
     "@krhougs/postcss-rem2rpx": "^0.0.0",
     "@ljharb/eslint-config": "^13.1.1",
-    "async": "^3.1.0",
+    "async": "^3.2.2",
     "babel-eslint": "10.0.2",
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-async-to-module-method": "^6.24.1",
