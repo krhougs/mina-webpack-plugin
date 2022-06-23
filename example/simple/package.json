@@ -61,7 +61,7 @@
     "fs-extra": "^8.1.0",
     "js-yaml": "^3.10.0",
     "js-yaml-loader": "^1.2.2",
-    "jsdom": "^15.1.1",
+    "jsdom": "^16.5.0",
     "json-loader": "^0.5.7",
     "mina-assets-loader": "^1.0.0",
     "mina-webpack-plugin": "^2.0.0",
